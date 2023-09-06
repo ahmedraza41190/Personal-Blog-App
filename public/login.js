@@ -1,12 +1,12 @@
 const firebaseConfig = {
     apiKey: "AIzaSyAzpav9KsTQ9_nr6gi4mInTp7JrsGHLHpA",
-      authDomain: "quiz-app-65c3e.firebaseapp.com",
-      projectId: "quiz-app-65c3e",
-      storageBucket: "quiz-app-65c3e.appspot.com",
-      messagingSenderId: "546653806160",
-      appId: "1:546653806160:web:4590ef27bf891bf505bb55",
-      measurementId: "G-HL5GZ85GPD"
-  };
+    authDomain: "quiz-app-65c3e.firebaseapp.com",
+    projectId: "quiz-app-65c3e",
+    storageBucket: "quiz-app-65c3e.appspot.com",
+    messagingSenderId: "546653806160",
+    appId: "1:546653806160:web:4590ef27bf891bf505bb55",
+    measurementId: "G-HL5GZ85GPD"
+};
 
 // initialize firebase
 firebase.initializeApp(firebaseConfig);
@@ -76,12 +76,12 @@ function login(event) {
         .catch((error) => {
             console.log("Login error:", error);
             Swal.fire({
-                    icon: 'error',
-                    title: 'Access Denied',
-                    text: 'Invalid email or password. Please enter correct credentials',
-                    confirmButtonColor: "#0079ff"
-                })
-                // alert("Invalid email or password. Please enter correct credentials.");
+                icon: 'error',
+                title: 'Access Denied',
+                text: 'Invalid email or password. Please enter correct credentials',
+                confirmButtonColor: "#0079ff"
+            })
+            // alert("Invalid email or password. Please enter correct credentials.");
         });
 
     document.getElementById("email-login").value

@@ -1,18 +1,18 @@
 const firebaseConfig = {
     apiKey: "AIzaSyAzpav9KsTQ9_nr6gi4mInTp7JrsGHLHpA",
-      authDomain: "quiz-app-65c3e.firebaseapp.com",
-      projectId: "quiz-app-65c3e",
-      storageBucket: "quiz-app-65c3e.appspot.com",
-      messagingSenderId: "546653806160",
-      appId: "1:546653806160:web:4590ef27bf891bf505bb55",
-      measurementId: "G-HL5GZ85GPD"
+    authDomain: "quiz-app-65c3e.firebaseapp.com",
+    projectId: "quiz-app-65c3e",
+    storageBucket: "quiz-app-65c3e.appspot.com",
+    messagingSenderId: "546653806160",
+    appId: "1:546653806160:web:4590ef27bf891bf505bb55",
+    measurementId: "G-HL5GZ85GPD"
 };
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
 let username = "";
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         username = user.email.slice(0, -10); // Store the username
         // document.getElementById("headerName").innerText = username;
@@ -34,7 +34,7 @@ function renderPostsUser() {
             if (querySnapshot.empty) {
                 container.innerHTML = "<h1 class='font'>No Posts Found</h1>";
             } else {
-                querySnapshot.forEach(function(doc) {
+                querySnapshot.forEach(function (doc) {
                     var data = doc.data();
 
                     var timestamp = data.timestamp ? data.timestamp.toDate() : new Date();
@@ -101,7 +101,7 @@ function renderPostsUser() {
                             .get()
                             .then((querySnapshot) => {
                                 {
-                                    querySnapshot.forEach(function(doc) {
+                                    querySnapshot.forEach(function (doc) {
                                         var data = doc.data();
 
                                         if (data.email === postEmail) {
@@ -134,7 +134,7 @@ function renderPostsUser() {
                     cont.innerText = "see all from this user";
                     cont.href = './user.html'
                     cont.name = `${postEmail}`
-                        // console.log(cont.name)
+                    // console.log(cont.name)
                     cont.style.gap = "1em"
                     cont.style.padding = "1em"
                     cont.addEventListener("click", (event) => {
@@ -169,7 +169,7 @@ function logOut() {
         });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     renderPostsUser();
 });
 

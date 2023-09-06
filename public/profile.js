@@ -2,23 +2,23 @@ let username = "";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAzpav9KsTQ9_nr6gi4mInTp7JrsGHLHpA",
-      authDomain: "quiz-app-65c3e.firebaseapp.com",
-      projectId: "quiz-app-65c3e",
-      storageBucket: "quiz-app-65c3e.appspot.com",
-      messagingSenderId: "546653806160",
-      appId: "1:546653806160:web:4590ef27bf891bf505bb55",
-      measurementId: "G-HL5GZ85GPD"
-  };
+    authDomain: "quiz-app-65c3e.firebaseapp.com",
+    projectId: "quiz-app-65c3e",
+    storageBucket: "quiz-app-65c3e.appspot.com",
+    messagingSenderId: "546653806160",
+    appId: "1:546653806160:web:4590ef27bf891bf505bb55",
+    measurementId: "G-HL5GZ85GPD"
+};
 
 firebase.initializeApp(firebaseConfig);
 var auth = firebase.auth();
 var db = firebase.firestore();
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     const resetButton = document.getElementById("rbtn");
 
-    resetButton.addEventListener("click", async() => {
+    resetButton.addEventListener("click", async () => {
         const oldPassword = document.getElementById("oldPass").value;
         const newPassword = document.getElementById("newPass").value;
         const confirmPassword = document.getElementById("repPass").value;
@@ -68,7 +68,7 @@ function clearPasswordFields() {
     document.getElementById("repPass").value = "";
 }
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         username = user.email;
 
@@ -77,7 +77,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 .get()
                 .then((querySnapshot) => {
                     {
-                        querySnapshot.forEach(function(doc) {
+                        querySnapshot.forEach(function (doc) {
                             var data = doc.data();
 
                             if (data.email === username) {
@@ -114,7 +114,7 @@ function logOut() {
 }
 
 function editName() {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             username = user.email;
 
@@ -122,7 +122,7 @@ function editName() {
                 db.collection("users")
                     .get()
                     .then((querySnapshot) => {
-                        querySnapshot.forEach(function(doc) {
+                        querySnapshot.forEach(function (doc) {
                             var data = doc.data();
 
                             if (data.email === username) {
@@ -196,7 +196,7 @@ function editName() {
 function file(event) {
     // console.log(event.target.files[0])
     let uid = firebase.auth().currentUser.uid
-        // console.log(uid)
+    // console.log(uid)
     let fileref = firebase.storage().ref().child(`/users/${uid}/profile`)
     let uploadTask = fileref.put(event.target.files[0])
 
@@ -250,7 +250,7 @@ function file(event) {
 
 }
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // Display the user's profile image if available
         if (user.photoURL) {

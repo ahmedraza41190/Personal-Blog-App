@@ -6,19 +6,19 @@
     font-family: "Josefin Sans", sans-serif;
     /* font-family: "Roboto", sans-serif; */
     /* font-weight: normal!important; */
-    font-weight: bold!important;
-    outline: none!important;
+    font-weight: bold !important;
+    outline: none !important;
     box-sizing: border-box;
-    text-decoration: none!important;
-    font-style: normal!important;
+    text-decoration: none !important;
+    font-style: normal !important;
 }
 
 
 /* body */
 
 body {
-    background-color: #f0f0f0!important;
-    color: #212121!important;
+    background-color: #f0f0f0 !important;
+    color: #212121 !important;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -28,8 +28,8 @@ body {
     row-gap: 2em;
     width: 100vw;
     height: 100vh;
-    padding: 0!important;
-    margin: 0em!important;
+    padding: 0 !important;
+    margin: 0em !important;
     padding-bottom: 1em;
 }
 
@@ -42,14 +42,14 @@ h5,
 h6,
 i,
 a {
-    margin: 0px!important;
+    margin: 0px !important;
 }
 
 
 /* icon */
 
 .icon {
-    margin-right: 0.5em!important;
+    margin-right: 0.5em !important;
 }
 
 
@@ -58,7 +58,7 @@ a {
 .r {
     display: flex;
     flex-direction: row;
-    padding: 0em!important;
+    padding: 0em !important;
     gap: 1em;
     width: 100%;
     height: fit-content;
@@ -99,7 +99,7 @@ a {
 .c {
     display: flex;
     flex-direction: column;
-    padding: 0em!important;
+    padding: 0em !important;
     gap: 1em;
     width: 100%;
     height: fit-content;
@@ -108,7 +108,7 @@ a {
 .cr {
     display: flex;
     flex-direction: column-reverse;
-    padding: 0.5em!important;
+    padding: 0.5em !important;
     gap: 1em;
     width: 100%;
     height: fit-content;
@@ -155,7 +155,7 @@ a {
     width: fit-content;
     height: fit-content;
     border-radius: 10px;
-    padding: 0.5em!important;
+    padding: 0.5em !important;
     border: none;
     width: 100%;
     /* margin-top: 1em; */
@@ -171,7 +171,7 @@ a {
 .center {
     width: 100%;
     text-align: center;
-    margin: 0px!important;
+    margin: 0px !important;
 }
 
 .left {
@@ -191,10 +191,10 @@ a {
     width: 100%;
     height: auto;
     color: #212121;
-    background-color: #fff!important;
-    border: 1px solid #ccc!important;
+    background-color: #fff !important;
+    border: 1px solid #ccc !important;
     /* border-radius: 5px; */
-    padding: 1em 0.5em!important;
+    padding: 1em 0.5em !important;
 }
 
 ::placeholder {
@@ -251,7 +251,7 @@ a {
 }
 
 details[open] summary {
-    margin: none!important;
+    margin: none !important;
 }
 
 details summary {
@@ -274,7 +274,7 @@ details summary {
 }
 
 div:where(.swal2-container) div:where(.swal2-loader) {
-    border-color: #0079ff #fff!important;
+    border-color: #0079ff #fff !important;
 }
 
 
@@ -284,7 +284,7 @@ div:where(.swal2-container) div:where(.swal2-loader) {
     background-color: #0079ff;
     width: fit-content;
     height: fit-content;
-    padding: 1.5em!important;
+    padding: 1.5em !important;
     border-radius: 10px;
     color: #fff;
 }
@@ -303,18 +303,18 @@ div:where(.swal2-container) div:where(.swal2-loader) {
 .validationMessage {
     display: none;
     color: #e55865;
-    width: 100%!important;
+    width: 100% !important;
     text-align: center;
     width: 10em;
 }
 
 form {
-    background-color: #fff!important;
-    width: 15em!important;
+    background-color: #fff !important;
+    width: 15em !important;
     border: 1px solid #ccc;
     border-radius: 10px;
-    color: #212121!important;
-    margin: auto!important;
+    color: #212121 !important;
+    margin: auto !important;
 }
 
 form h2 {
@@ -322,7 +322,7 @@ form h2 {
 }
 
 .input:focus {
-    border: 1px solid #0079ff!important;
+    border: 1px solid #0079ff !important;
 }
 
 .eye {

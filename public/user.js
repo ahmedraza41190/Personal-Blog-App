@@ -6,14 +6,14 @@ const firebaseConfig = {
     messagingSenderId: "546653806160",
     appId: "1:546653806160:web:4590ef27bf891bf505bb55",
     measurementId: "G-HL5GZ85GPD"
-  };
+};
 
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
 let username = "";
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         username = user.email;
 
@@ -22,7 +22,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 .get()
                 .then((querySnapshot) => {
                     {
-                        querySnapshot.forEach(function(doc) {
+                        querySnapshot.forEach(function (doc) {
                             var data = doc.data();
 
                             if (data.email === localStorage.getItem("userMail")) {
@@ -33,7 +33,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                                 localStorage.getItem("userMail");
                                 document.getElementById("pname").innerText = `${data.firstName}  ${data.lastName}`
                                 document.getElementById("User").innerText = data.firstName
-                                    // console.log(data.photo)
+                                // console.log(data.photo)
                                 document.querySelector(".myImg").src = data.photo
                             }
                         });
@@ -51,7 +51,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // console.log(localStorage.getItem("userMail"))
     } else {
@@ -73,7 +73,7 @@ function renderUserPosts(userEmail) {
                 container.innerHTML = "<h1 class='font'>No Posts Found</h1>";
                 // console.log("me")
             } else {
-                querySnapshot.forEach(function(doc) {
+                querySnapshot.forEach(function (doc) {
                     var data = doc.data();
 
                     var timestamp = data.timestamp ? data.timestamp.toDate() : new Date();
@@ -97,7 +97,7 @@ function renderUserPosts(userEmail) {
                                 if (data.email === postEmail) {
                                     // console.log("match")
                                     image.src = data.photo
-                                        // document.querySelector(".myImg").src = data.photo
+                                    // document.querySelector(".myImg").src = data.photo
                                 }
                             });
                         })
@@ -137,7 +137,7 @@ function renderUserPosts(userEmail) {
                             .get()
                             .then((querySnapshot) => {
                                 {
-                                    querySnapshot.forEach(function(doc) {
+                                    querySnapshot.forEach(function (doc) {
                                         var data = doc.data();
 
                                         if (data.email === localStorage.getItem("userMail")) {
@@ -178,7 +178,7 @@ function renderUserPosts(userEmail) {
         });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     renderUserPosts();
 });
 
