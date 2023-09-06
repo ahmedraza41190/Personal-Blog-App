@@ -15,10 +15,12 @@ let username = "";
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         username = user.email.slice(0, -10); // Store the username
-        document.getElementById("headerName").innerText = username;
+        // document.getElementById("headerName").innerText = username;
     } else {
-        window.location.href = "./login.html";
-        document.getElementById("headerName").innerText = 'null';
+        document.querySelector(".log").innerText = "Login"
+        document.querySelector(".log").addEventListener('click', () => {
+            window.location.href = "./login.html"
+        })
     }
 });
 
@@ -32,7 +34,7 @@ function renderPostsUser() {
             if (querySnapshot.empty) {
                 container.innerHTML = "<h1 class='font'>No Posts Found</h1>";
             } else {
-                querySnapshot.forEach(function (doc) {
+                querySnapshot.forEach(function(doc) {
                     var data = doc.data();
 
                     var timestamp = data.timestamp ? data.timestamp.toDate() : new Date();
@@ -46,6 +48,23 @@ function renderPostsUser() {
                     let image = document.createElement("img");
                     image.className += "userImg"
                     image.src = "https://avatars.githubusercontent.com/u/99830227?v=4"
+
+                    let postEmail = data.user
+
+                    db.collection("users").get()
+                        .then((querySnapshot) => {
+                            querySnapshot.forEach((doc) => {
+                                let data = doc.data()
+                                if (data.email === postEmail) {
+                                    // console.log("match")
+                                    image.src = data.photo
+                                }
+                            });
+                        })
+                        .catch((error) => {
+                            console.error("Error querying Firestore:", error);
+                        });
+
                     row.appendChild(image);
 
                     let div = document.createElement("div")
@@ -69,21 +88,57 @@ function renderPostsUser() {
 
                     let tim = document.createElement("div")
                     tim.className += " row gap"
+                    tim.style.rowGap = "0em"
                     div.appendChild(tim)
+
+                    // console.log(postEmail)
 
                     let name = document.createElement("p");
                     name.className += " userMail";
-                    name.innerText = `${data.user.slice(0, -10)}`;
+
+                    {
+                        db.collection("users")
+                            .get()
+                            .then((querySnapshot) => {
+                                {
+                                    querySnapshot.forEach(function(doc) {
+                                        var data = doc.data();
+
+                                        if (data.email === postEmail) {
+                                            // console.log("founded")
+                                            name.innerText = `${data.firstName}  ${data.lastName} |`;
+                                            document.getElementById("headerName").innerText = `${data.firstName}  ${data.lastName}`;
+                                            // document.getElementById("name").innerText = `${data.firstName}  ${data.lastName}`;
+                                        } else {
+                                            // console.log("not found")
+                                        }
+
+                                    })
+                                }
+                            })
+                            .catch((error) => {
+                                console.error("Error getting posts: ", error);
+                            });
+                    }
+
                     tim.appendChild(name);
 
                     let time = document.createElement("p");
                     time.className += " postTime";
-                    time.innerText = ` ${moment(timestamp).fromNow()}`;
+                    time.innerText = `| ${moment(timestamp).format("ll")}`;
                     tim.appendChild(time);
 
                     let cont = document.createElement("a");
-                    cont.addEventListener("click",(event)=>{
-                        let mail = event.target.parentNode.querySelector('div>div>div>div>div').firstChild.innerText + "@gmail.com";
+                    cont.className += " anchor";
+                    cont.style.color = "#0079ff";
+                    cont.innerText = "see all from this user";
+                    cont.href = './user.html'
+                    cont.name = `${postEmail}`
+                        // console.log(cont.name)
+                    cont.style.gap = "1em"
+                    cont.style.padding = "1em"
+                    cont.addEventListener("click", (event) => {
+                        let mail = event.target.name;
                         // console.log(mail)
                         localStorage.setItem("userMail", mail)
                     })
@@ -96,7 +151,7 @@ function renderPostsUser() {
             }
         })
         .catch((error) => {
-            //console.error("Error getting posts: ", error);
+            console.error("Error getting posts: ", error);
         });
 }
 
@@ -107,14 +162,14 @@ function logOut() {
         .signOut()
         .then(() => {
             // console.log("Sign out successful");
-            window.location.href = "./login.html";
+            window.location.href = "./all.html";
         })
         .catch((error) => {
             console.log("Sign out error:", error);
         });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     renderPostsUser();
 });
 

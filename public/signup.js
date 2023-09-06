@@ -11,6 +11,13 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
+// logout automatically
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        window.location.href = "./all.html";
+    }
+});
+
 // show Password
 function showPassword(event) {
     event.target.className = "eye bi bi-eye";
@@ -32,9 +39,10 @@ function signup(event) {
     event.preventDefault();
     let firstName = document.getElementById("first-name").value;
     let lastName = document.getElementById("last-name").value;
-    let email = document.getElementById("email-signup").value;
+    let email = (document.getElementById("email-signup").value).toLowerCase();
     let password = document.getElementById("password-signup").value;
     let confirmPassword = document.getElementById("password-signup-repeat").value;
+    let photoU = "https://avatars.githubusercontent.com/u/99830227?v=4"
     let message = document.querySelector(".validationMessage");
 
     if (!email.endsWith("@gmail.com")) {
@@ -47,9 +55,9 @@ function signup(event) {
     function validatePassword(password) {
         const regex = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
         return regex.test(password);
-      }
+    }
 
-    if(!validatePassword(password)){
+    if (!validatePassword(password)) {
         message.innerText = `Password Must Contain Small And Capital Aplhabets`;
         message.style.display = "block";
         message.style.color = "#e55865";
@@ -62,6 +70,12 @@ function signup(event) {
         email.trim() === '' ||
         password.trim() === '' ||
         confirmPassword.trim() === ''
+        // || firstName.length > 8 ||
+        // lastName.length > 8 ||
+        // password.length > 8 ||
+        // confirmPassword.length > 8 ||
+        // firstName.length < 4 || lastName.length < 4 ||
+        // password.length < 4 || confirmPassword.length < 4
     ) {
         message.innerText = `Please fill required fields`;
         message.style.display = "block";
@@ -76,26 +90,40 @@ function signup(event) {
         return;
     }
 
+    db.collection("users")
+        .add({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            photo: photoU,
+        })
+        .then((docRef) => {
+            // console.log("signed added")
+        })
+        .catch((error) => {
+            console.log("error signup")
+        });
+
+
     // firebase
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-        // After successful registration, set the photoURL
-        const user = userCredential.user;
-        user.updateProfile({
-            photoURL: user.photoURL,
-        }).then(() => {
-            // Now the photoURL is set for the user
-            window.location.href = "./index.html";
-        }).catch((error) => {
-            console.log("Error setting profile picture:", error);
+        .then((userCredential) => {
+            // After successful registration, set the photoURL
+            const user = userCredential.user;
+            user.updateProfile({
+                photoURL: user.photoURL,
+            }).then(() => {
+                // Now the photoURL is set for the user
+                window.location.href = "./index.html";
+            }).catch((error) => {
+                console.log("Error setting profile picture:", error);
+            });
+        })
+        .catch((error) => {
+            console.log("Error creating user:", error);
         });
-    })
-    .catch((error) => {
-        console.log("Error creating user:", error);
-    });
 
-    
     // Reset the input fields after successful signup
     document.getElementById("first-name").value = "";
     document.getElementById("last-name").value = "";
@@ -103,17 +131,3 @@ function signup(event) {
     document.getElementById("password-signup").value = "";
     document.getElementById("password-signup-repeat").value = "";
 }
-
-db.collection(`${email}`).doc("profile")
-        .set({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-        })
-        .then((docRef) => {
-            //console.log("Document written with ID:", docRef.id);
-        })
-        .catch((error) => {
-            //console.error("Error adding document:", error);
-        });

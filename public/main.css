@@ -1,12 +1,15 @@
 * {
     outline: none;
     box-sizing: border-box;
+    font-family: "Josefin Sans", sans-serif!important;
+    font-weight: bold;
 }
+
 
 /* body */
 
 body {
-    background-color: #fff!important;
+    background-color: #f0f0f0!important;
     color: #212121!important;
     display: flex;
     flex-direction: column;
@@ -41,7 +44,7 @@ a {
     margin-right: 0.5em!important;
 }
 
-.button{
+.button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,13 +57,13 @@ a {
     margin-left: auto;
 }
 
-header{
+header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0.5em;
+    padding: 1em;
     width: 100%;
-    background-color: #8540f5;
+    background-color: #0079ff;
     color: #fff;
     gap: 1em;
     position: sticky;
@@ -69,26 +72,34 @@ header{
     z-index: 20;
 }
 
-a{
+a {
     color: #fff;
     text-decoration: none;
 }
 
-.heading{
+.heading {
     width: 100%;
     text-align: left;
     padding: 0em 1em;
     font-size: 1.5em;
 }
 
-#headerName{
+#headerName {
     font-weight: normal!important;
-    width: 5em;
-    overflow-y: hidden;
+    width: 8em;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
-.form{
+#headerName::-moz-scrollbar {
+    display: none;
+}
+
+#headerName::-webkit-scrollbar {
+    display: none;
+}
+
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,9 +110,10 @@ a{
     box-shadow: 0px 0px 4px #bbb;
     border-radius: 10px;
     width: 90%;
+    background-color: #fff;
 }
 
-.form>*{
+.form>* {
     width: 100%;
     border: 1px solid #ccc!important;
     height: auto;
@@ -112,13 +124,14 @@ a{
     padding: 1em 0.5em!important;
     /* border-radius: 10px; */
 }
-.form>*:focus{
-    border: 1px solid #8540f5!important;
+
+.form>*:focus {
+    border: 1px solid #0079ff!important;
 }
 
 .button {
     color: #fff;
-    background-color: #8540f5!important;
+    background-color: #0079ff!important;
     width: 8em;
     height: fit-content;
     border-radius: 10px;
@@ -129,15 +142,16 @@ a{
 }
 
 .button:active {
-    background-color: #8540f5;
+    background-color: #0079ff;
 }
 
-textarea{
+textarea {
     min-height: 2em;
     max-height: 12em;
     overflow: auto;
     padding: 1em!important;
 }
+
 
 /* scrollbar */
 
@@ -156,7 +170,7 @@ textarea::-moz-scrollbar-track {
 }
 
 textarea::-moz-scrollbar-thumb {
-    background-color: #8540f5;
+    background-color: #0079ff;
     border-radius: 10px;
     /* border: 2px solid #15182b; */
 }
@@ -179,36 +193,36 @@ textarea::-webkit-scrollbar-track {
 textarea::-webkit-scrollbar-thumb {
     /* -webkit-box-shadow: inset 0 0 6px #212121; */
     border-radius: 10px;
-    background-color: #8540f5;
+    background-color: #0079ff;
     /* border: 2px solid #15182b; */
 }
+
 
 /* sweet alert styling */
 
 .swal2-confirm:focus,
-        .swal2-deny:focus,
-        .swal2-cancel:focus,
-        .swal2-input:focus {
-            box-shadow: 0 0 4px #8540f5 !important;
-        }
-        
-        .swal2-input {
-            border: 0px solid #8540f5 !important;
-        }
-        
-        div:where(.swal2-container) div:where(.swal2-loader) {
-            border-color: #8540f5 #fff;
-        }
+.swal2-deny:focus,
+.swal2-cancel:focus,
+.swal2-input:focus {
+    box-shadow: 0 0 4px #0079ff !important;
+}
 
+.swal2-input {
+    border: 0px solid #0079ff !important;
+}
 
-.myBlogs{
+div:where(.swal2-container) div:where(.swal2-loader) {
+    border-color: #0079ff #fff;
+}
+
+.myBlogs {
     width: 100%;
     text-align: left;
     padding: 1em 1.4em;
     font-size: 1.5em;
 }
 
-.resultDash{
+.resultDash {
     width: 100%;
     padding: 1em;
     display: flex;
@@ -219,11 +233,15 @@ textarea::-webkit-scrollbar-thumb {
     gap: 1em;
 }
 
-.renderPost{
+.renderPost {
     width: 100%;
     height: fit-content;
     border-radius: 0!important;
     padding: 0em!important;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 10px!important;
+    box-shadow: 0px 0px 4px #bbb;
 }
 
 .drop-down {
@@ -293,7 +311,7 @@ column,
 .renderPost .row>* {
     display: inline-block;
     width: auto;
-    padding: 0px!important;
+    padding: 0px;
 }
 
 .renderPost .row div .dropdown button {
@@ -452,7 +470,7 @@ ul {
     /* padding-right: 2em!important; */
 }
 
-.renderPost{
+.renderPost {
     border: 1px solid #ccc;
     padding: 1em 2em!important;
     width: 100%;
@@ -463,68 +481,76 @@ ul {
     /* box-shadow: 0 0 1px #555; */
 }
 
-.renderPost>.row{
+.renderPost>.row {
     gap: 1em;
     font-size: 0.8em;
     align-items: center;
 }
 
-.userImg{
+.userImg {
     width: 4em!important;
     height: 4em!important;
     border-radius: 10px;
     align-self: flex-start;
+    border: 2px solid #ccc;
+    padding: 0.3em!important;
+    object-fit: cover;
+    object-position: top center;
 }
 
-.gap{
+.gap {
     padding: 0.5em;
     gap: 0.5em;
     color: #343434;
 }
 
-.renderPost .row{
+.renderPost .row {
     width: 100%;
     gap: 1em;
 }
 
-.text{
+.text {
     color: #444;
     font-weight: normal!important;
 }
 
-.del{
+.del {
     font-size: 1.2em;
-    color: #8540f5;
+    color: #0079ff;
 }
 
-.swal2-input{
+.swal2-input {
     width: 90%;
     margin: 0!important;
     border: 1px solid #ccc!important;
     margin: 0.5em 0em!important;
 }
 
-.swal2-input:focus{
-    border: 1px solid #8540f5!important;
+.swal2-input:focus {
+    border: 1px solid #0079ff!important;
 }
 
-.swal-ta{
+.swal-ta {
     height: 8em!important;
 }
 
-.font{
+.font {
     font-size: 1.5em;
     width: 100%;
     text-align: center;
 }
 
-.mainImg{
+.mainImg {
     width: 10em;
     height: 10em;
     border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    object-fit: cover;
+    object-position: top center;
 }
 
-.upd{
+.upd {
     width: 10em !important;
 }
 
@@ -538,30 +564,96 @@ ul {
     padding: 0.5em!important;
 }
 
-.input:focus{
-    border: 1px solid #8540f5!important;
+.input:focus {
+    border: 1px solid #0079ff!important;
 }
 
-.anchor{
+.anchor {
     padding: 0!important;
     width: 100%!important;
     text-align: left!important;
-    color: #8540f5!important;
+    color: #0079ff!important;
     text-decoration: none!important;
     margin: 0!important;
 }
 
-.purple{
-    color: #8540f5!important;
+.purple {
+    color: #0079ff!important;
     text-align: left!important;
     width: 100%!important;
-    padding-left: 1em;
+    padding: 0em 1em;
 }
 
-.full{
+.full {
     width: 100%!important;
 }
 
-.myImg{
+.myImg {
     width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0.5em;
+    object-fit: cover;
+    object-position: top center;
+}
+
+#mail {
+    color: #212121!important;
+}
+
+.myImg {
+    width: 15em!important;
+    /* height: 15em!important; */
+    /* height: 15em!important; */
+    object-fit: cover;
+    object-position: top center;
+}
+
+.title {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.title::-moz-scrollbar {
+    display: none;
+}
+
+.title::-webkit-scrollbar {
+    display: none;
+}
+
+.text {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.text::-moz-scrollbar {
+    display: none;
+}
+
+.text::-webkit-scrollbar {
+    display: none;
+}
+
+.prof {
+    margin: auto!important;
+    box-shadow: 0px 0px 4px #bbb;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 550px) {
+    .special {
+        flex-direction: column-reverse;
+    }
+    .special-1 {
+        align-self: flex-end!important;
+    }
+    .myImg {
+        width: 4em;
+    }
+    header>* {
+        font-size: 0.8em!important;
+    }
 }

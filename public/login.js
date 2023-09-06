@@ -11,6 +11,13 @@ const firebaseConfig = {
 // initialize firebase
 firebase.initializeApp(firebaseConfig);
 
+// logout automatically
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        window.location.href = "./all.html";
+    }
+});
+
 // show Password
 function showPassword(event) {
     event.target.className = "eye bi bi-eye-slash";
@@ -62,7 +69,7 @@ function login(event) {
                 icon: 'success',
                 title: 'Logged In',
                 text: 'Login Successfull',
-                confirmButtonColor: "#252525"
+                confirmButtonColor: "#0079ff"
             })
             window.location.href = "./index.html";
         })
@@ -72,7 +79,7 @@ function login(event) {
                     icon: 'error',
                     title: 'Access Denied',
                     text: 'Invalid email or password. Please enter correct credentials',
-                    confirmButtonColor: "#8540f5"
+                    confirmButtonColor: "#0079ff"
                 })
                 // alert("Invalid email or password. Please enter correct credentials.");
         });
